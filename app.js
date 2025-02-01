@@ -12,12 +12,10 @@ function exibirAmigos(tag, texto) {
 // Função para adicionar os nomes no Array.
 function adicionarAmigo() {
     let amigos = document.querySelector('input').value;//Armazena o valor recebido no HTML na variável "amigos".
-    listaAmigos.push(amigos);//Joga o valor armazenado na variável "amigos" para dentro do Array.
-    console.log(listaAmigos);
     
-    if (document.querySelector('input').value == "") {
-        alert('Por favor, insira um nome.');
-    } else {
+    if (amigos.trim() !== "") {
+        listaAmigos.push(amigos);//Joga o valor armazenado na variável "amigos" para dentro do Array.
+        console.log(listaAmigos);
         let listaFinal = "";
         for ( let i = 0; i < listaAmigos.length; i++ ) {
             listaFinal += listaAmigos[i];
@@ -25,7 +23,12 @@ function adicionarAmigo() {
         }
         exibirAmigos('ul', listaFinal);
         limparCampo('input');//Limpa o campo após adicionar o nome.
+        
+    } else {
+        console.log("O array não pode receber uma string vazia.");
+        alert('Por favor, insira um nome.');
     }
+    
 }
 
 //funcção para Limpar campo.
