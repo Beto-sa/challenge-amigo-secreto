@@ -20,16 +20,25 @@ function adicionarAmigo() {
     } else {
         let listaFinal = "";
         for ( let i = 0; i < listaAmigos.length; i++ ) {
-            listaFinal += listaAmigos[i] 
+            listaFinal += listaAmigos[i];
             listaFinal += i < listaAmigos.length - 1 ? ", " : "."; 
         }
         exibirAmigos('ul', listaFinal);
-        limparCampo();
+        limparCampo('input');//Limpa o campo após adicionar o nome.
     }
 }
 
 //funcção para Limpar campo.
-function limparCampo() {
-    let retornoVazio = document.querySelector('input');
+function limparCampo(tag) {
+    let retornoVazio = document.querySelector(tag);
     retornoVazio.value = '';
+}
+
+//Função para sortear o nome.
+function sortearAmigo() {
+    let endResultado = document.getElementById('resultado');
+    let amigoSorteado = parseInt(Math.random() * listaAmigos.length);
+    resultadoSorteio = listaAmigos[amigoSorteado];
+    endResultado.innerHTML = `O seu amigo secreto é "${resultadoSorteio}".`;
+    console.log(resultadoSorteio);
 }
