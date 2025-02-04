@@ -53,15 +53,28 @@ function sortearAmigo() {
     let tamanhoDaLista = listaAmigos.length;
     console.log(`O tamanho da lista é ${tamanhoDaLista}.`);
 
+    //Estrutura if cria condicionantes para caso o botão de sorteio seja acionado com 1 ou menos nomes.
     if (tamanhoDaLista > 1) {
         let endResultado = document.getElementById('resultado');
         let amigoSorteado = Math.floor(Math.random() * listaAmigos.length);
-        console.log(amigoSorteado);
+        console.log(`Numero sorteado: ${amigoSorteado}.`);
         let resultadoSorteio = listaAmigos[amigoSorteado];
         endResultado.innerHTML = `O seu amigo secreto é "${resultadoSorteio}".`;
         console.log(resultadoSorteio);
         listaAmigos = [];
         limparHtml('listaAmigos');
+
+        for (let i = 10; i >= 0; i--) {
+            setTimeout(() => {
+              if (i > 0) {
+                console.log(i + " segundos restantes");
+              } else {
+                console.log("Tempo esgotado! O resultado foi limpo para que o sorteio possa ser reiniciado.");
+                limparHtml('resultado');
+              }
+            }, (10 - i) * 1000); // Multiplica para criar o atraso certo
+        }
+
     } else {
         if (tamanhoDaLista == 1) {
             alert('Por favor, insira mais nomes.');
